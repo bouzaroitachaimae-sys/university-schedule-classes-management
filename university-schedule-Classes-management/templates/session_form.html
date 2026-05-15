@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page form-page">
+  <h1>Planifier une session d'examen</h1>
+  <form method="POST">
+    <label>Matiere</label>
+    <input type="text" name="matiere" placeholder="Ex: Algorithmique" required>
+    <label>Date et heure</label>
+    <input type="datetime-local" name="dateHeure" required>
+    <label>Duree (en heures)</label>
+    <input type="number" name="duree" min="1" max="6" value="2" required>
+    <label>Salle</label>
+    <select name="idSalle" required>
+      <option value="">-- Choisir une salle --</option>
+      {% for s in salles %}
+      <option value="{{ s.idSalle }}">{{ s.nomSalle }} (capacite: {{ s.capacite }})</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn">Planifier</button>
+    <a href="{{ url_for('session.liste_sessions') }}" class="btn-back">Retour</a>
+  </form>
+</div>
+{% endblock %}

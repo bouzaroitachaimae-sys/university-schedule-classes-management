@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="edt-header">
+  <div>
+    <h1>Emploi du temps</h1>
+    <p>{{ profil.filiere }} — {{ profil.niveau }} — {{ profil.groupe }}</p>
+  </div>
+</div>
+
+<div class="edt-grid">
+  {% for jour in jours %}
+  {% if edt[jour] %}
+  <div class="edt-day">
+    <div class="edt-day-header">{{ jour }}</div>
+    {% for cr in edt[jour] %}
+    <div class="edt-slot">
+      <div class="edt-time">{{ cr.heureDebut }} — {{ cr.heureFin }}</div>
+      <div class="edt-matiere">{{ cr.matiere }}</div>
+      <div class="edt-salle">{{ cr.nomSalle }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

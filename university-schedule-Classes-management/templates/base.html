@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>UIC — Gestion des Salles et Plannings</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% if session.user_id %}
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="univ">Universite Internationale</div>
+    <h1>UIC</h1>
+    <p>Gestion des salles et plannings</p>
+  </div>
+  <div class="sidebar-user">
+    <div class="user-name">{{ session.user_nom }}</div>
+    <div class="user-role">{{ session.user_role }}</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Menu</div>
+    <a href="{{ url_for('auth.dashboard') }}" {% if request.endpoint=='auth.dashboard' %}class="active"{% endif %}>Tableau de bord</a>
+
+    {% if session.user_role == 'etudiant' %}
+      <a href="{{ url_for('auth.emploi_du_temps') }}" {% if request.endpoint=='auth.emploi_du_temps' %}class="active"{% endif %}>Emploi du temps</a>
+      <a href="{{ url_for('session.notifications') }}" {% if request.endpoint=='session.notifications' %}class="active"{% endif %}>Mes messages</a>
+    {% else %}
+      <a href="{{ url_for('salle.liste_salles') }}" {% if 'salle' in request.endpoint %}class="active"{% endif %}>Salles</a>
+      <a href="{{ url_for('planning.liste_plannings') }}" {% if 'planning' in request.endpoint %}class="active"{% endif %}>Plannings</a>
+      <a href="{{ url_for('reservation.liste_reservations') }}" {% if 'reservation' in request.endpoint %}class="active"{% endif %}>Reservations</a>
+      <div class="nav-label">Examens</div>
+      <a href="{{ url_for('session.liste_sessions') }}" {% if request.endpoint in ('session.liste_sessions','session.creer_session') %}class="active"{% endif %}>Sessions d'examen</a>
+      <a href="{{ url_for('session.notifications') }}" {% if request.endpoint=='session.notifications' %}class="active"{% endif %}>Notifications</a>
+    {% endif %}
+  </nav>
+  <div class="sidebar-footer">
+    <a href="{{ url_for('auth.logout') }}">Deconnexion</a>
+  </div>
+</div>
+<div class="main-content">
+  <div class="topbar">
+    <span class="topbar-title">Universite Internationale du Centre — UIC</span>
+    <span class="topbar-user">{{ session.user_nom }}</span>
+  </div>
+  <main>{% block content %}{% endblock %}</main>
+</div>
+{% else %}
+<main style="width:100%">{% block content_public %}{% endblock %}</main>
+{% endif %}
+</body>
+</html>

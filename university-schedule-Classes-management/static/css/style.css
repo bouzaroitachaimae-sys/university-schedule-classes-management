@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1a2c4e;--navy2:#243a61;--navy3:#2e4a7a;
+  --gold:#b8960c;--gold2:#f0c040;
+  --light:#f4f5f7;--white:#ffffff;--border:#d6d9e0;
+  --text:#1a1a2e;--muted:#5a6070;
+  --danger:#8b1a1a;--success:#1a5c2e;--warning:#7a5c00;
+}
+body{font-family:'Source Sans 3',sans-serif;background:var(--light);color:var(--text);min-height:100vh;display:flex;font-size:15px;}
+
+/* ── SIDEBAR ── */
+.sidebar{width:240px;min-height:100vh;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;border-right:3px solid var(--gold);}
+.sidebar-brand{padding:1.6rem 1.4rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.1);}
+.sidebar-brand .univ{font-size:0.68rem;color:var(--gold2);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.3rem;}
+.sidebar-brand h1{font-family:'Libre Baskerville',serif;font-size:1.5rem;font-weight:700;color:var(--white);letter-spacing:2px;}
+.sidebar-brand p{font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;text-transform:uppercase;letter-spacing:1px;}
+.sidebar-user{padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sidebar-user .user-name{font-size:0.88rem;color:rgba(255,255,255,0.9);font-weight:600;}
+.sidebar-user .user-role{font-size:0.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.15rem;}
+.sidebar-nav{flex:1;padding:1rem 0;}
+.nav-label{font-size:0.65rem;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:1.5px;padding:0.8rem 1.4rem 0.3rem;}
+.sidebar-nav a{display:block;padding:0.6rem 1.4rem;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.86rem;border-left:3px solid transparent;transition:all 0.15s;}
+.sidebar-nav a:hover{background:rgba(255,255,255,0.06);color:var(--white);border-left-color:var(--gold);}
+.sidebar-nav a.active{background:rgba(255,255,255,0.1);color:var(--white);border-left-color:var(--gold);font-weight:600;}
+.sidebar-footer{padding:1rem 1.4rem;border-top:1px solid rgba(255,255,255,0.08);}
+.sidebar-footer a{color:rgba(255,255,255,0.35);text-decoration:none;font-size:0.78rem;transition:color 0.15s;}
+.sidebar-footer a:hover{color:rgba(255,255,255,0.75);}
+
+/* ── MAIN ── */
+.main-content{margin-left:240px;flex:1;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{background:var(--navy);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
+.topbar-title{font-family:'Libre Baskerville',serif;font-size:0.85rem;color:rgba(255,255,255,0.85);letter-spacing:1px;text-transform:uppercase;}
+.topbar-user{font-size:0.78rem;color:rgba(255,255,255,0.55);}
+main{padding:1.8rem 2rem;flex:1;}
+
+/* ── LOGIN ── */
+.login-wrapper{min-height:100vh;background:var(--navy);display:flex;align-items:center;justify-content:center;width:100%;}
+.login-box{background:var(--white);width:420px;border-top:4px solid var(--gold);padding:2.5rem;}
+.login-box .logo{text-align:center;margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+.login-box .logo .univ-name{font-family:'Libre Baskerville',serif;font-size:1.6rem;color:var(--navy);font-weight:700;letter-spacing:3px;}
+.login-box .logo .univ-full{font-size:0.75rem;color:var(--muted);margin-top:0.3rem;letter-spacing:1px;}
+.login-box h2{font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1.4rem;}
+.hint{font-size:0.72rem;color:#aaa;margin-top:1.2rem;line-height:1.9;padding-top:1rem;border-top:1px solid var(--border);}
+
+/* ── DASHBOARD ADMIN/CHEF ── */
+.dash-header{margin-bottom:1.8rem;}
+.dash-header h1{font-family:'Libre Baskerville',serif;font-size:1.3rem;color:var(--navy);}
+.dash-header p{font-size:0.86rem;color:var(--muted);margin-top:0.3rem;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1.2rem;}
+.card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--navy);padding:1.5rem;text-decoration:none;color:var(--text);transition:box-shadow 0.2s,border-top-color 0.2s;display:block;}
+.card:hover{box-shadow:0 4px 16px rgba(26,44,78,0.1);border-top-color:var(--gold);}
+.card h3{font-family:'Libre Baskerville',serif;font-size:0.92rem;color:var(--navy);margin-bottom:0.4rem;}
+.card p{font-size:0.8rem;color:var(--muted);line-height:1.5;}
+
+/* ── DASHBOARD ETUDIANT ── */
+.etud-layout{display:grid;grid-template-columns:300px 1fr;gap:1.5rem;align-items:start;}
+.profil-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--gold);padding:0;}
+.profil-card .profil-header{background:var(--navy);padding:1.4rem;text-align:center;}
+.profil-card .profil-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;font-family:'Libre Baskerville',serif;font-size:1.4rem;color:var(--white);font-weight:700;}
+.profil-card .profil-name{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--white);font-weight:700;}
+.profil-card .profil-role{font-size:0.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-top:0.2rem;}
+.profil-card .profil-body{padding:1rem 1.4rem;}
+.profil-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid #f0f0f0;}
+.profil-row:last-child{border-bottom:none;}
+.profil-label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600;}
+.profil-value{font-size:0.86rem;color:var(--text);font-weight:600;text-align:right;}
+
+.etud-right{display:flex;flex-direction:column;gap:1.5rem;}
+.section-card{background:var(--white);border:1px solid var(--border);}
+.section-card .section-header{background:var(--navy);padding:0.8rem 1.2rem;display:flex;align-items:center;gap:0.6rem;}
+.section-card .section-header h2{font-family:'Libre Baskerville',serif;font-size:0.92rem;color:var(--white);font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.section-card .section-body{padding:0;}
+
+/* ── PAGE ── */
+.page{background:var(--white);border:1px solid var(--border);padding:1.8rem 2rem;}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.page h1{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:1.4rem;}
+.page-header h1{margin-bottom:0;}
+
+/* ── FORMS ── */
+form{display:flex;flex-direction:column;gap:1rem;}
+.form-page{max-width:520px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.form-section h2{font-family:'Libre Baskerville',serif;font-size:0.92rem;color:var(--navy);margin-bottom:1rem;}
+label{font-size:0.76rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;}
+input,select,textarea{padding:0.55rem 0.85rem;border:1px solid var(--border);border-radius:0;font-size:0.9rem;font-family:'Source Sans 3',sans-serif;width:100%;background:var(--white);color:var(--text);transition:border-color 0.15s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);}
+textarea{resize:vertical;min-height:80px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-block;background:var(--navy);color:var(--white);padding:0.52rem 1.3rem;border:none;cursor:pointer;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;font-weight:600;text-decoration:none;text-align:center;letter-spacing:0.8px;text-transform:uppercase;transition:background 0.15s;border-radius:0;}
+.btn:hover{background:var(--navy3);}
+.btn-sm{display:inline-block;padding:0.22rem 0.65rem;font-size:0.73rem;text-decoration:none;border:1px solid var(--border);color:var(--navy);background:var(--white);margin-right:4px;font-weight:600;border-radius:0;transition:all 0.15s;}
+.btn-sm:hover{background:var(--light);}
+.btn-sm.danger{border-color:#c0392b;color:var(--danger);}
+.btn-sm.danger:hover{background:#fdf5f5;}
+.btn-back{color:var(--muted);text-decoration:none;font-size:0.82rem;display:inline-block;margin-top:1rem;}
+.btn-back:hover{color:var(--navy);}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;}
+thead{background:var(--navy);}
+th{padding:0.62rem 1rem;text-align:left;font-size:0.73rem;color:rgba(255,255,255,0.88);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;}
+td{padding:0.65rem 1rem;border-bottom:1px solid #eef0f3;font-size:0.86rem;color:var(--text);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#f8f9fc;}
+
+/* ── BADGES ── */
+.badge{display:inline-block;padding:0.16rem 0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;border-radius:0;}
+.badge-en_attente{background:#fef9e7;color:var(--warning);border:1px solid #d4ac0d;}
+.badge-validee{background:#eafaf1;color:var(--success);border:1px solid #1e8449;}
+.badge-refusee{background:#fdf5f5;color:var(--danger);border:1px solid #a93226;}
+.badge-convocation{background:#eafaf1;color:var(--success);border:1px solid #1e8449;}
+.badge-emploi_du_temps{background:#eaf3fb;color:#1a4a78;border:1px solid #5b9bd5;}
+.badge-conflit{background:#fdf5f5;color:var(--danger);border:1px solid #a93226;}
+.badge-annulation{background:#fdf5f5;color:var(--danger);border:1px solid #a93226;}
+
+/* ── NOTIF CARD ── */
+.notif-item{display:flex;gap:1rem;padding:0.9rem 1.2rem;border-bottom:1px solid #eef0f3;align-items:flex-start;}
+.notif-item:last-child{border-bottom:none;}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;}
+.notif-dot.lue{background:#ccc;}
+.notif-content .notif-objet{font-size:0.86rem;color:var(--text);font-weight:600;}
+.notif-content .notif-date{font-size:0.75rem;color:var(--muted);margin-top:0.2rem;}
+
+.erreur{background:#fdf5f5;color:var(--danger);padding:0.7rem 1rem;border-left:3px solid var(--danger);font-size:0.88rem;margin-bottom:1rem;}
+
+/* ── DASHBOARD ETUDIANT ── */
+.etud-layout{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start;}
+.profil-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--gold);}
+.profil-header{background:var(--navy);padding:1.6rem 1.2rem;text-align:center;}
+.profil-avatar{width:60px;height:60px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;font-family:'Libre Baskerville',serif;font-size:1.3rem;color:var(--white);font-weight:700;}
+.profil-name{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--white);font-weight:700;}
+.profil-role{font-size:0.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-top:0.3rem;}
+.profil-body{padding:0.5rem 1.2rem 1rem;}
+.profil-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.52rem 0;border-bottom:1px solid #f0f0f0;}
+.profil-row:last-of-type{border-bottom:none;}
+.profil-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;font-weight:600;}
+.profil-value{font-size:0.84rem;color:var(--text);font-weight:600;text-align:right;max-width:160px;}
+
+/* Section card */
+.section-card{background:var(--white);border:1px solid var(--border);}
+.section-header{background:var(--navy);padding:0.75rem 1.2rem;display:flex;align-items:center;gap:0.8rem;}
+.section-header h2{font-family:'Libre Baskerville',serif;font-size:0.88rem;color:var(--white);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:0.6rem;}
+.notif-count{background:var(--gold);color:var(--navy);font-size:0.7rem;font-weight:700;padding:0.1rem 0.5rem;border-radius:10px;}
+.section-body{padding:0;}
+.notif-item{display:flex;gap:0.9rem;padding:1rem 1.2rem;border-bottom:1px solid #f0f2f5;align-items:flex-start;}
+.notif-item:last-child{border-bottom:none;}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0;}
+.notif-dot.lue{background:#ccc;}
+.notif-content{flex:1;}
+.notif-objet{font-size:0.86rem;color:var(--text);margin:0.3rem 0 0.2rem;line-height:1.4;}
+.notif-date{font-size:0.72rem;color:var(--muted);}
+.no-msg{padding:1.5rem;color:var(--muted);font-size:0.86rem;text-align:center;}
+
+/* ── EMPLOI DU TEMPS ── */
+.edt-header{margin-bottom:1.5rem;}
+.edt-header h1{font-family:'Libre Baskerville',serif;font-size:1.2rem;color:var(--navy);}
+.edt-header p{font-size:0.85rem;color:var(--muted);margin-top:0.3rem;}
+.edt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.edt-day{background:var(--white);border:1px solid var(--border);overflow:hidden;}
+.edt-day-header{background:var(--navy);color:var(--white);padding:0.6rem 1rem;font-family:'Libre Baskerville',serif;font-size:0.88rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;border-left:3px solid var(--gold);}
+.edt-slot{padding:0.75rem 1rem;border-bottom:1px solid #f0f2f5;}
+.edt-slot:last-child{border-bottom:none;}
+.edt-time{font-size:0.72rem;color:var(--gold);font-weight:700;letter-spacing:0.5px;margin-bottom:0.25rem;}
+.edt-matiere{font-size:0.86rem;color:var(--text);font-weight:600;line-height:1.3;}
+.edt-salle{font-size:0.72rem;color:var(--muted);margin-top:0.2rem;}

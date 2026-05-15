@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page form-page">
+  <h1>🏫 {{ 'Modifier' if salle else 'Ajouter' }} une salle</h1>
+  <form method="POST">
+    <label>Nom de la salle</label>
+    <input type="text" name="nomSalle" value="{{ salle.nomSalle if salle }}" required>
+    <label>Type</label>
+    <select name="type">
+      {% for t in ['cours','laboratoire','amphitheatre','salle_de_reunion'] %}
+      <option value="{{ t }}" {{ 'selected' if salle and salle.type == t }}>{{ t }}</option>
+      {% endfor %}
+    </select>
+    <label>Capacité</label>
+    <input type="number" name="capacite" value="{{ salle.capacite if salle else 30 }}" min="1" required>
+    <label>Bâtiment</label>
+    <input type="text" name="batiment" value="{{ salle.batiment if salle }}">
+    {% if salle %}
+    <label>Disponible</label>
+    <select name="disponible">
+      <option value="1" {{ 'selected' if salle.disponible }}>Oui</option>
+      <option value="0" {{ 'selected' if not salle.disponible }}>Non</option>
+    </select>
+    {% endif %}
+    <button type="submit" class="btn">Enregistrer</button>
+    <a href="{{ url_for('salle.liste_salles') }}" class="btn-back">← Retour</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="page-header">
+    <h1>Notifications</h1>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Type</th><th>Objet</th><th>Canal</th><th>Date</th><th>Statut</th>{% if role == 'admin' %}<th>Destinataire</th>{% endif %}</tr>
+    </thead>
+    <tbody>
+    {% for n in notifs %}
+      <tr>
+        <td><span class="badge badge-{{ n.type }}">{{ n.type }}</span></td>
+        <td>{{ n.objet or '—' }}</td>
+        <td>{{ n.canal }}</td>
+        <td>{{ n.dateEnvoie }}</td>
+        <td>{% if n.envoyee %}<span class="badge badge-validee">Envoyee</span>{% else %}<span class="badge badge-en_attente">En attente</span>{% endif %}</td>
+        {% if role == 'admin' %}<td>{{ n.nom }}</td>{% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="6">Aucune notification.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

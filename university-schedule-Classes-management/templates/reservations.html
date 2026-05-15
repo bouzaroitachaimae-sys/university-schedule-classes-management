@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="page-header">
+    <h1>Reservations</h1>
+    <a href="{{ url_for('reservation.creer_reservation') }}" class="btn">+ Nouvelle reservation</a>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Date et heure</th><th>Duree (h)</th><th>Salle</th><th>Motif</th><th>Statut</th>{% if role == 'admin' %}<th>Demandeur</th><th>Actions</th>{% endif %}</tr>
+    </thead>
+    <tbody>
+    {% for r in reservations %}
+      <tr>
+        <td>{{ r.dateHeure }}</td>
+        <td>{{ r.duree }}</td>
+        <td>{{ r.nomSalle }}</td>
+        <td>{{ r.motif or '—' }}</td>
+        <td><span class="badge badge-{{ r.statut }}">{{ r.statut }}</span></td>
+        {% if role == 'admin' %}
+        <td>{{ r.nomUtilisateur }}</td>
+        <td>
+          {% if r.statut == 'en_attente' %}
+          <a href="{{ url_for('reservation.valider_reservation', id=r.idReservation) }}" class="btn-sm">Valider</a>
+          <a href="{{ url_for('reservation.refuser_reservation', id=r.idReservation) }}" class="btn-sm danger">Refuser</a>
+          {% endif %}
+        </td>
+        {% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="7">Aucune reservation.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

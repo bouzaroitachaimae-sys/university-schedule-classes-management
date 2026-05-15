@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="etud-layout">
+
+  <!-- COLONNE GAUCHE : Profil -->
+  <div class="profil-card">
+    <div class="profil-header">
+      <div class="profil-avatar">{{ profil.prenom[0] }}{{ profil.nom[0] }}</div>
+      <div class="profil-name">{{ profil.prenom }} {{ profil.nom }}</div>
+      <div class="profil-role">{{ profil.niveau }}</div>
+    </div>
+    <div class="profil-body">
+      <div class="profil-row">
+        <span class="profil-label">CNE</span>
+        <span class="profil-value">{{ profil.cne or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Date de naissance</span>
+        <span class="profil-value">{{ profil.dateNaissance or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Filiere</span>
+        <span class="profil-value">{{ profil.filiere or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Niveau</span>
+        <span class="profil-value">{{ profil.niveau or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Groupe</span>
+        <span class="profil-value">{{ profil.groupe or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Annee</span>
+        <span class="profil-value">{{ profil.anneeInscription or '—' }}</span>
+      </div>
+      <div class="profil-row">
+        <span class="profil-label">Email</span>
+        <span class="profil-value" style="font-size:0.76rem">{{ profil.email }}</span>
+      </div>
+      <div style="padding:1rem 0 0.2rem">
+        <a href="{{ url_for('auth.emploi_du_temps') }}" class="btn" style="display:block;text-align:center">
+          Voir mon emploi du temps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE : Messages -->
+  <div class="section-card" style="align-self:start">
+    <div class="section-header">
+      <h2>Mes messages
+        {% if notifs %}
+          <span class="notif-count">{{ notifs|length }}</span>
+        {% endif %}
+      </h2>
+    </div>
+    <div class="section-body">
+      {% if notifs %}
+        {% for n in notifs %}
+        <div class="notif-item">
+          <div class="notif-dot"></div>
+          <div class="notif-content">
+            <span class="badge badge-{{ n.type }}">{{ n.type }}</span>
+            <div class="notif-objet">{{ n.objet or '—' }}</div>
+            <div class="notif-date">{{ n.dateEnvoie }} &nbsp;·&nbsp; {{ n.canal }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-msg">Aucun message pour le moment.</p>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

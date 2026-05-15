@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dash-header">
+  <h1>Tableau de bord</h1>
+  <p>Bienvenue, {{ nom }}. Role : <strong>{{ role }}</strong></p>
+</div>
+<div class="cards">
+  <a href="{{ url_for('salle.liste_salles') }}" class="card">
+    <h3>Salles</h3>
+    <p>Consulter et gerer les salles disponibles</p>
+  </a>
+  <a href="{{ url_for('planning.liste_plannings') }}" class="card">
+    <h3>Plannings</h3>
+    <p>Gerer les emplois du temps par filiere</p>
+  </a>
+  <a href="{{ url_for('reservation.liste_reservations') }}" class="card">
+    <h3>Reservations</h3>
+    <p>Gerer les demandes de reservation de salles</p>
+  </a>
+  <a href="{{ url_for('session.liste_sessions') }}" class="card">
+    <h3>Sessions d'examen</h3>
+    <p>Planifier et publier les convocations</p>
+  </a>
+  <a href="{{ url_for('session.notifications') }}" class="card">
+    <h3>Notifications</h3>
+    <p>Alertes, convocations et diffusions</p>
+  </a>
+</div>
+{% endblock %}

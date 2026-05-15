@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="page-header">
+    <h1>📅 Plannings</h1>
+    {% if role in ('chef_dept','admin') %}
+    <a href="{{ url_for('planning.creer_planning') }}" class="btn">+ Créer un planning</a>
+    {% endif %}
+  </div>
+  <table>
+    <thead>
+      <tr><th>Semestre</th><th>Filière</th><th>Année univ.</th><th>Chef de Dept.</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+    {% for p in plannings %}
+      <tr>
+        <td>{{ p.semestre }}</td>
+        <td>{{ p.filiere }}</td>
+        <td>{{ p.anneeUniv }}</td>
+        <td>{{ p.nomChef or '—' }}</td>
+        <td><a href="{{ url_for('planning.detail_planning', id=p.idPlanning) }}" class="btn-sm">Voir</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

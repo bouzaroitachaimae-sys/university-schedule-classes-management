@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="page-header">
+    <h1>Sessions d'examen</h1>
+    {% if role in ('chef_dept','admin') %}
+    <a href="{{ url_for('session.creer_session') }}" class="btn">+ Planifier une session</a>
+    {% endif %}
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Matiere</th><th>Date et heure</th><th>Duree (h)</th><th>Salle</th><th>Chef de Dept.</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+    {% for s in sessions %}
+      <tr>
+        <td>{{ s.matiere }}</td>
+        <td>{{ s.dateHeure }}</td>
+        <td>{{ s.duree }}</td>
+        <td>{{ s.nomSalle }}</td>
+        <td>{{ s.nomChef }}</td>
+        <td>
+          {% if role in ('chef_dept','admin') %}
+          <a href="{{ url_for('session.publier_convocations', id=s.idSession) }}" class="btn-sm"
+             onclick="return confirm('Publier les convocations pour tous les etudiants ?')">Publier convocations</a>
+          <a href="{{ url_for('session.supprimer_session', id=s.idSession) }}" class="btn-sm danger"
+             onclick="return confirm('Supprimer cette session ?')">Supprimer</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6">Aucune session planifiee.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% if role == 'etudiant' and convocations %}
+  <div class="form-section">
+    <h2>Mes convocations</h2>
+    <table>
+      <thead>
+        <tr><th>Matiere</th><th>Date et heure</th><th>Duree (h)</th><th>Salle</th><th>Place</th></tr>
+      </thead>
+      <tbody>
+      {% for c in convocations %}
+        <tr>
+          <td>{{ c.matiere }}</td>
+          <td>{{ c.dateHeure }}</td>
+          <td>{{ c.duree }}</td>
+          <td>{{ c.salleAttribuee }}</td>
+          <td>{{ c.numPlace }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

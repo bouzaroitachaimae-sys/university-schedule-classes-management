@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page form-page">
+  <h1>📅 Créer un planning</h1>
+  <form method="POST">
+    <label>Semestre</label>
+    <select name="semestre">
+      <option>S1</option><option>S2</option><option>S3</option>
+      <option>S4</option><option>S5</option><option>S6</option>
+    </select>
+    <label>Filière</label>
+    <input type="text" name="filiere" placeholder="Ex: L3 Informatique" required>
+    <label>Année universitaire</label>
+    <input type="text" name="anneeUniv" placeholder="Ex: 2025-2026" required>
+    <button type="submit" class="btn">Créer</button>
+    <a href="{{ url_for('planning.liste_plannings') }}" class="btn-back">← Retour</a>
+  </form>
+</div>
+{% endblock %}

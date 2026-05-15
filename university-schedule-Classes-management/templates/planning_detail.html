@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <h1>📅 Planning — {{ planning.filiere }} {{ planning.semestre }} {{ planning.anneeUniv }}</h1>
+
+  <table>
+    <thead>
+      <tr><th>Jour</th><th>Début</th><th>Fin</th><th>Matière</th><th>Salle</th>{% if role in ('chef_dept','admin') %}<th>Action</th>{% endif %}</tr>
+    </thead>
+    <tbody>
+    {% for c in creneaux %}
+      <tr>
+        <td>{{ c.jour }}</td>
+        <td>{{ c.heureDebut }}</td>
+        <td>{{ c.heureFin }}</td>
+        <td>{{ c.matiere }}</td>
+        <td>{{ c.nomSalle }}</td>
+        {% if role in ('chef_dept','admin') %}
+        <td><a href="{{ url_for('planning.supprimer_creneau', idCreneau=c.idCreneau, idPlanning=planning.idPlanning) }}" class="btn-sm danger">Supprimer</a></td>
+        {% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="6">Aucun créneau pour ce planning.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% if role in ('chef_dept','admin') %}
+  <div class="form-section">
+    <h2>Ajouter un créneau</h2>
+    <form method="POST" action="{{ url_for('planning.ajouter_creneau', id=planning.idPlanning) }}">
+      <div class="form-grid">
+        <div>
+          <label>Jour</label>
+          <select name="jour">
+            {% for j in ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'] %}
+            <option>{{ j }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label>Heure début</label>
+          <input type="time" name="heureDebut" required>
+        </div>
+        <div>
+          <label>Heure fin</label>
+          <input type="time" name="heureFin" required>
+        </div>
+        <div>
+          <label>Matière</label>
+          <input type="text" name="matiere" required>
+        </div>
+        <div>
+          <label>Salle</label>
+          <select name="idSalle">
+            {% for s in salles %}
+            <option value="{{ s.idSalle }}">{{ s.nomSalle }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn">Ajouter le créneau</button>
+    </form>
+  </div>
+  {% endif %}
+  <a href="{{ url_for('planning.liste_plannings') }}" class="btn-back">← Retour</a>
+</div>
+{% endblock %}

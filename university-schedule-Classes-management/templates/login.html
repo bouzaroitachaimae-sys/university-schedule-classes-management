@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>UIC — Connexion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="login-wrapper">
+  <div class="login-box">
+    <div class="logo">
+      <div class="univ-name">UIC</div>
+      <div class="univ-full">Universite Internationale du Centre</div>
+      <div class="univ-full" style="margin-top:0.2rem">Systeme de gestion des salles et plannings</div>
+    </div>
+    <h2>Connexion</h2>
+    {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+    <form method="POST">
+      <label>Adresse email</label>
+      <input type="email" name="email" placeholder="votre@uic.ma" required>
+      <label>Mot de passe</label>
+      <input type="password" name="motDePasse" placeholder="••••••••" required>
+      <button type="submit" class="btn" style="margin-top:0.5rem">Se connecter</button>
+    </form>
+    <p class="hint">
+      admin@uic.ma / admin123 &nbsp;|&nbsp; martin@uic.ma / prof123<br>
+      dupont@uic.ma / chef123 &nbsp;|&nbsp; ali@uic.ma / etud123
+    </p>
+  </div>
+</div>
+</body>
+</html>

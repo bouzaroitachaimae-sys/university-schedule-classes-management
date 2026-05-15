@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="page-header">
+    <h1>🏫 Salles</h1>
+    {% if role == 'admin' %}
+    <a href="{{ url_for('salle.ajouter_salle') }}" class="btn">+ Ajouter une salle</a>
+    {% endif %}
+  </div>
+  <table>
+    <thead>
+      <tr><th>Nom</th><th>Type</th><th>Capacité</th><th>Bâtiment</th><th>Disponible</th>{% if role == 'admin' %}<th>Actions</th>{% endif %}</tr>
+    </thead>
+    <tbody>
+    {% for s in salles %}
+      <tr>
+        <td>{{ s.nomSalle }}</td>
+        <td>{{ s.type }}</td>
+        <td>{{ s.capacite }}</td>
+        <td>{{ s.batiment }}</td>
+        <td>{% if s.disponible %}✅ Oui{% else %}❌ Non{% endif %}</td>
+        {% if role == 'admin' %}
+        <td>
+          <a href="{{ url_for('salle.modifier_salle', id=s.idSalle) }}" class="btn-sm">Modifier</a>
+          <a href="{{ url_for('salle.supprimer_salle', id=s.idSalle) }}" class="btn-sm danger" onclick="return confirm('Supprimer ?')">Supprimer</a>
+        </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
